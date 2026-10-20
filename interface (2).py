@@ -38,8 +38,9 @@ def reception():
             if len(trozos) < 4:
                 print("Línea inválida recibida:", received)
                 continue
-            temp=trozos[1]
-            hum=trozos[3]
+            temp = trozos[1].strip()
+            hum = trozos[3].strip()
+            Temperaturas.append(float(temp))
             print('Temperatura: ' + temp + ' Humedad: ' + hum)
             Temperaturas.append(float(temp))
 
@@ -82,7 +83,7 @@ def Grafica_temp():
         ax.clear()  # limpiar la gráfica
         ax.set_title("Grafica de Temperatura")
         ax.set_ylabel("Temperatura (°C)")
-        ax.plot(eje_x, Temperaturas[:len(eje_x)], marker="o", color="red")
+        ax.plot(eje_x, Temperaturas[:len(eje_x)], marker=".", color="red")
 
         canvas.draw()  # actualizar la gráfica incrustada
 

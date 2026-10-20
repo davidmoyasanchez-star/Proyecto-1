@@ -5,9 +5,11 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 SoftwareSerial mySerial(10, 11); // RX, TX 
-
+long int timeout= 5000;
 long int timerEnvio = 1000;
 bool enviar = true;
+bool error = false;
+
 
 void setup() {
     Serial.begin(9600);
@@ -16,37 +18,38 @@ void setup() {
 }
 
 void loop() {
-
-    // -------- LECTURA NO BLOQUEANTE --------
     if (mySerial.available() > 0) {
         String orden = mySerial.readStringUntil('\n');
         orden.trim();
 
         if (orden == "parar") {
             enviar = false;
-            Serial.println("Satelite parado");
+            Serial.println("Satelite parado"); //Comp
         }
         else if (orden == "reanudar") {
             enviar = true;
-            Serial.println("Satelite reanudado");
+            Serial.println("Satelite reanudado"); //Comp
         }
         else {
-            Serial.println("Orden invalida");
+            Serial.println("Orden invalida"); //Comp
         }
     }
-    // ---------------------------------------
-
     float t = dht.readTemperature();
     float h = dht.readHumidity();
-
     if (isnan(t) || isnan(h)) {
-        Serial.println("Error sensor");
-        mySerial.println("error");
+        error=true; 
+        int currentmillis=millis();
+        timeout=timeout+currentmillis;
+        if ((error==true) && (millis()>=timeout)){
+            mySerial.println("error");
+            Serial.println("error"); //Comp
+        }
         return;
     }
 
     if (enviar) {
         if (millis() >= timerEnvio) {
+            Serial.println("Enviando"); //Comp
             mySerial.print("T:");
             mySerial.print(t);
             mySerial.print(":H:");

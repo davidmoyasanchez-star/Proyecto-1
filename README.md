@@ -1,6 +1,6 @@
 ¡Hola! Somos el grupo 5 constituido por David Moya Sánchez, Laia Clua Fité y Max Domínguez Bolaños.
 
-Adjuntamos por aquí los archivos con los códigos de toda la versión 1 y el vídeo de explicación.
+Adjuntamos por aquí los archivos con los códigos de toda la versión 1 y versión 2  y los vídeos de explicación.
 
 Video Versión 1: https://canva.link/z9g60m5nj7srof8
 

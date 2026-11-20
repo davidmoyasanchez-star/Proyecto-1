@@ -1,4 +1,4 @@
-¡Hola! Somos el grupo 5 constituido por David Moya Sánchez, Laia Clua Fité y Max Domínguez Bolaños.
+¡Bievenidos! Somos el grupo 5 constituido por David Moya Sánchez, Laia Clua Fité y Max Domínguez Bolaños.
 
 Adjuntamos por aquí los archivos con los códigos de toda la versión 1 y versión 2  y los vídeos de explicación.
 

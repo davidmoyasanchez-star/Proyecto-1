@@ -13,10 +13,9 @@ void setup() {
 }
 
 void loop() {
-   digitalWrite(led1,stateled1);
    // LECTURA DE DATOS DEL SATÉLITE 
     if (millis() - ultimoMensaje > TIMEOUT) { // Alerta de error de comunicacion
-        Serial.println("Error de recepcion");
+        Serial.println("error:5");
         ultimoMensaje = millis(); // evita spam del mensaje
         stateled1=HIGH;
     }
@@ -24,27 +23,19 @@ void loop() {
    else if (mySerial.available() > 0) {
       String data = mySerial.readStringUntil('\n');
       data.trim();
-         if (data.length() == 0) {
+         if (data.length() == 0) { // Ignorar basura como espacios en blanco, etc
             return;
          }
-
-         if (data == "error") {
-            Serial.println("Alerta: error de sensor");
-            ultimoMensaje = millis();
-            stateled1=HIGH;
-         }
-         else {
             Serial.println(data);
             ultimoMensaje = millis();
-         }
    }
 
    // ENVÍO DE ÓRDENES DESDE EL MONITOR SERIE 
    if (Serial.available() > 0) {
-      String orden = Serial.readStringUntil('\n');
-      orden.trim();
+      String orden = Serial.readStringUntil('\n'); // Leer orden de la interfaz
+      orden.trim(); // Recortar la orden para eliminar espacios en blanco al principio y/o al final
 
-      if (orden.length() > 0) {
+      if (orden.length() > 0) { // Para que no envie espacios en blanco
          mySerial.println(orden);
          Serial.println("Orden enviada: " + orden);
       }
